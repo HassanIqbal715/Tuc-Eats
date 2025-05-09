@@ -1,0 +1,194 @@
+body {
+    display: none;
+}
+
+#item-image {
+    margin-top: 10px;
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    border: none;
+}
+
+#camera-icon {
+    position: absolute;
+    margin-top: 114px;
+}
+
+.fields-box {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+#item-name-field {
+    padding-left: 10px;
+}
+
+#item-price-field {
+    padding-left: 10px;
+}
+
+.dropdown-box {
+    height: 4.6vh;
+    width: 15.8vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.item-dropdown-text {
+    color: rgb(120, 120, 120);
+    margin-top: 5px;
+    font-size: 15px;
+    justify-self: center;
+    margin-left: auto;
+    margin-right: -25px;    
+}
+
+.item-dropdown-list {
+    display: none;
+    z-index: 99;
+    background-color: white;
+    width: 15.8vw;
+    height: auto;
+    text-align: center;
+}
+
+.item-category-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.dropdown-arrow {
+    margin-top: 10px;
+    width: 16px;
+    height: 16px;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.drop-button {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#food-button {
+    margin-top: 5px;
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#drink-button {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#fast-food-button {
+    margin-top: 5px;
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#desi-button {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#chinese-button {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#bbq-button {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#dessert-button {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#fixed-button {
+    margin-top: 5px;
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#variable-button {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#item-category-box {
+    z-index: 99;
+}
+
+#item-cuisine-box {
+    display: none;
+    z-index: 98;
+}
+
+#item-size-box {
+    display: none;
+    z-index: 97;
+}
+
+#sizes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+}
+
+.size-price-container {
+    display: none;
+    justify-content: center;
+    gap: 8.5px;
+}
+
+input.size-input {
+    width: 7vw;
+    padding-left: 10px;
+}
+
+input.price-input {
+    width: 7vw;
+    padding-left: 10px;
+}
+
+#size-one {
+    margin-top: 5px;
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#size-two {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#size-three {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+#size-four {
+    width: 15.8vw;
+    font-size: 15px;
+}
+
+.invalid-input {
+    color: red;
+    font-size: 12px;
+    align-self: flex-start;
+    margin-left: 1px;
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/cart.css">
+    <script src="/script/cart.js" type="module" defer></script>
+    <script>
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.getElementById('header-container').innerHTML = data;
+                import('/script/header.js');
+            });
+    </script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div class="title-text">Cart</div>
+    <div class="cart-body">
+        <div id="items-container"></div>
+        <div class="checkout-container">
+            <div class="checkout-prices-box">
+                <div class="total-charges-text">
+                    <div class="item-text">Items Total</div>
+                    <div class="item-text">Delivery Charges</div>
+                    <div class="item-text">Total</div>
+                </div>
+                <div class="total-charges-numbers">
+                    <div class="total-charges-box">
+                        <div class="item-price-rs">Rs</div>
+                        <div id="items-total-price" class="item-number">550</div>
+                    </div>
+                    <div class="total-charges-box">
+                        <div class="item-price-rs">Rs</div>
+                        <div id="delivery-charges" class="item-number">150</div>
+                    </div>
+                    <div class="total-charges-box">
+                        <div class="item-price-rs">Rs</div>
+                        <div id="total-charges" class="item-number">700</div>
+                    </div>
+                </div>
+            </div>
+            <div id="place-order-button">Place Order</div>
+        </div>
+    </div>
+</body>

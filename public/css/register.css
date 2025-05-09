@@ -1,0 +1,185 @@
+.register-box {
+    background-color: #FFBC5E;
+    height: 75vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.register-box-text {
+    font-weight: 700;
+    text-align: center;
+    margin-top: 5vh;
+    font-size: 25px;    
+}
+
+.field {
+    position: relative;
+    margin: 0;
+    height: 4.6vh;
+    width: 15vw;
+    padding-left: 0.25vw;
+    padding-right: 0.25vw;
+    border: none;
+    z-index: 1;
+}
+
+.spacer {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.address-box-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7vh;
+}
+
+#name-box-fields {
+    display: flex;
+    gap: 0.5vw;
+    justify-content: center;
+}
+
+#date-box-fields {
+    display: flex;
+    gap: 0.22vw;
+    justify-content: center;
+}
+
+#other-box-fields {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.9vh;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7vh;
+}
+
+#field-firstname {
+    width: 7.4vw;
+}
+
+#field-lastname {
+    width: 7.4vw;
+}
+
+#field-day {
+    width: 4.78vw;
+    text-align: center;
+}
+
+#field-month {
+    width: 4.78vw;
+    text-align: center;
+}
+
+#field-year {
+    width: 4.78vw;
+    text-align: center;
+}
+
+#other-box-fields input {
+    padding-left: 0.7vw;
+    padding-right: 0.7vw;
+}
+
+#login {
+    display: block;
+    text-decoration: none;
+    font-size: 2.343vh;
+    color: #646464;
+    text-decoration: underline;
+    justify-self: end;
+}
+
+#button-next {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4.5vh;
+    height: 4.785vh;
+    width: 10vw;
+    border-radius: 25px;
+    background-color: #E28400;
+    color: white;
+}
+
+#button-next:hover {
+    cursor: pointer;
+}
+
+#button-register {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4.5vh;
+    height: 4.785vh;
+    width: 10vw;
+    border-radius: 25px;
+    background-color: #E28400;
+    color: white;
+}
+
+#button-register:hover {
+    cursor: pointer;
+}
+
+#button-back {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4.5vh;
+    height: 4.785vh;
+    width: 10vw;
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: white;
+    color: black;
+}
+
+#button-back:hover {
+    cursor: pointer;
+    color: white;
+    background-color: black;
+}
+
+#step-2 {
+    margin-top: 55px;
+}
+
+#invalid-username-box {
+    align-self: flex-start;
+}
+
+#invalid-email-box {
+    align-self: flex-start;
+}
+
+#invalid-password-box {
+    align-self: flex-start;
+}
+
+#invalid-confirmpassword {
+    align-self: flex-start;
+}
+
+#invalid-phonenumber-box {
+    align-self: flex-start;
+}
+
+#invalid-hostel-box {
+    align-self: flex-start;
+}
+
+#invalid-room-box {
+    align-self: flex-start;
+}

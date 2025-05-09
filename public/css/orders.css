@@ -1,0 +1,113 @@
+body {
+    display: none;
+}
+
+.orders-title {
+    margin-top: 120px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.order-box {
+    display: flex;
+    height: 150px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    padding: 20px;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: -1px;
+}
+
+.order-id-box {
+    align-self: center;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: auto;
+}
+
+.order-id-text {
+    font-weight: 700;
+}
+
+.order-date-box {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.order-user-box {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.order-destination-box {
+    width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.order-price-box {
+    display: flex;
+    align-self: center;
+    margin-bottom: 10px;
+    gap: 5px;
+    margin-left: 30px;
+}
+
+.order-id-box,
+.order-date-box,
+.order-user-box,
+.order-destination-box,
+.order-price-box {
+    flex: 1;
+    min-width: 120px;
+}
+
+.order-price-rs {
+    color: #E28400;
+    font-weight: 700;
+}
+
+.order-price {
+    font-weight: 700;
+}
+
+.buttons-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-bottom: 10px;
+    margin-right: 50px;
+    min-width: 120px;
+}
+
+.status-text {
+    padding: 0;
+    margin: 0;
+}
+
+.receipt-button {
+    align-self: center;
+    width: 120px;
+    height: 40px;
+    border-radius: 29px;
+    background-color: #E28400;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.receipt-button:hover {
+    cursor: pointer;
+}

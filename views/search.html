@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/search.css">
+    <script src="/script/search.js" type="module" defer></script>
+    <script>
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.getElementById('header-container').innerHTML = data;
+                import('/script/header.js');
+            });
+    </script>
+    <script type="module">
+        import * as search from '/script/search.js';
+    
+        fetch('/item.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.getElementById('item-select-container').innerHTML = data;
+                await import('/script/item.js');
+                await search.init();
+            });
+    </script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <h1 id="search-results-text">Search Results</h1>;
+    <div class="items-container">
+        <div id="items-grid"></div>
+    </div>
+    <div id="background-blur"></div>
+    <div id="item-select-container"></div>
+</body>
+</html>

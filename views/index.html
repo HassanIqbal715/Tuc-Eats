@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <script src="/script/home.js" defer></script>
+    <script>
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.getElementById('header-container').innerHTML = data;
+                import('/script/header.js');
+            });
+    </script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div class="banner">
+        <div class="banner-text">ORDER ANY FOOD/DRINK FROM ANY RESTAURANT 
+            IN GIKI</div>
+        <img class="banner-image" src="/images/giki-logo.png">
+    </div>
+    <h2 style="text-align: center;">All Restaurants</h2>
+    <div class="restaurant-container">
+        <div id="restaurant-grid"></div>
+    </div>
+</body>
+</html>

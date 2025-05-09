@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/restaurant.css">
+    <script type = "module" src="/script/restaurant.js" defer></script>
+    <script>
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.getElementById('header-container').innerHTML = data;
+                import('/script/header.js');
+            });
+        
+        fetch('/item.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.getElementById('item-select-container').innerHTML = data;
+                await import('/script/item.js');
+            });
+    </script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div class="banner">
+        <img id="restaurant-cover">
+    </div>
+    <div class="title-box">
+        <div class="restaurant-contact">
+            <div>Contact Numbers</div>
+            <div id="restaurant-phonenumbers"></div>
+        </div>
+        <div class="description-box">
+            <div id="restaurant-name"></div>
+            <div id="restaurant-description"></div>
+        </div>
+    </div>
+    <div id="admin-header">
+        <div id="admin-addItem" class="admin-header-button">Add Item</div>
+        <div id="admin-removeItem" class="admin-header-button">Remove Item</div>
+        <div id="admin-editItem" class="admin-header-button">Edit Item</div>
+        <div id="admin-riders" class="admin-header-button">Riders</div>
+        <div id="admin-orders" class="admin-header-button">Orders</div>
+    </div>
+    <div id="items-header">
+            <div class="items-search">
+                <input id="items-search-bar" placeholder="Search Item"></input>
+                <img id="items-search-button" src="/images/search-button.png">
+            </div>
+            <div class="items-header-buttons">
+                <div id="items-header-food">Food</div>
+                <div id="items-header-drinks">Drink</div>
+        </div>
+        <div id="recommendation">Recommend Me</div>
+    </div>
+    <div id="admin-remove-item-text"></div>
+    <div class="items-container">
+        <div id="items-grid"></div>
+    </div>
+    <div id="admin-confirm-footer">
+        <div id="admin-confirm-text">Items Selected 0</div>
+        <div id="admin-confirm-button"></div>
+    </div>
+    <div id="background-blur"></div>
+    <div id="delete-prompt-box">
+        <span class="delete-prompt-text">Delete the items?</span>
+        <div class="delete-buttons">
+            <div id="delete-confirm-button">Yes</div>
+            <div id="delete-reject-button">No</div>
+        </div>
+    </div>
+    <div id="item-select-container"></div>
+</body>
+</html>

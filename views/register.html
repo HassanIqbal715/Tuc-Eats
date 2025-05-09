@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/register.css">
+    <script type="module" src="/script/register.js" defer></script> 
+    <script>
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.getElementById('header-container').innerHTML = data;
+                import('/script/header.js');
+            });
+    </script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="background">
+        <div class="background-left">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 7.5vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 26.182vh; transform: scaleX(-1);">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 48.04vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 66.7vh; transform: scaleX(-1);">
+        </div>
+        <div class="background-right">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 7.5vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 26.182vh; transform: scaleX(-1);">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 48.04vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 66.7vh; transform: scaleX(-1);">
+        </div>
+    </div>
+    <div id="foreground">
+        <div class="register-box"> 
+            <div class="register-box-text">Sign Up</div>
+            <!-- Page 1 -->
+            <div id="step-1">
+                <div id="register-box-fields">
+                    <div class="spacer">
+                        <div id="invalid-name-box" class="invalid-input"
+                            style="margin-bottom: 0.7vh"></div>
+                        <div id="name-box-fields">
+                            <input id="field-firstname" class="field" 
+                                placeholder="First Name" type="text">
+                            <input id="field-lastname" class="field" 
+                                placeholder="Last Name" type="text">
+                        </div>
+                    </div>
+                    <div class="spacer" style="margin-top: 0.7vh">
+                        <div id="invalid-date-box" class="invalid-input" 
+                            style="margin-bottom: 1vh"></div>
+                        <div id="date-box-fields">
+                            <input id="field-day" class="field" placeholder="DD">
+                            <input id="field-month" class="field" placeholder="MM">
+                            <input id="field-year" class="field" placeholder="YYYY">
+                        </div>
+                    </div>
+                    <div id="other-box-fields">
+                        <div id="invalid-username-box" class="invalid-input"></div>
+                        <input id="field-username" class="field" 
+                            placeholder="Username">
+                        <div id="invalid-email-box" class="invalid-input"></div>
+                        <input id="field-email" class="field" placeholder="Email">
+                        <div id="invalid-password-box" class="invalid-input"></div>
+                        <input id="field-password" class="field" 
+                            placeholder="Password" type="password">
+                        <div id="invalid-confirmpassword" class="invalid-input"></div>
+                        <input id="field-confirmpassword" class="field"
+                            placeholder="Confirm Password" type="password">
+                    </div>
+                    <a id="login" href="/login/">already have an account?</a>
+                </div>
+                <div id="button-next">Next</div> 
+            </div>
+            <!-- Page 2 -->
+            <div id="step-2">
+                <div>
+                    <div id="invalid-phonenumber-box" class="invalid-input"
+                        style="margin-bottom: 0.7vh"></div>
+                    <input id="field-phonenumber" class="field" 
+                        placeholder="Phone Number">
+                    <div class="address-box-fields">
+                        <p style="margin: 0; margin-top: 10px; ">
+                            Primary Address
+                        </p>
+                        <div id="invalid-hostel-box" class="invalid-input"></div>
+                        <input id="field-hostelnumber" class="field" 
+                            placeholder="Hostel #">
+                        <div id="invalid-room-box" class="invalid-input"></div>
+                        <input id="field-roomnumber" class="field" 
+                            placeholder="Room #">
+                    </div>
+                </div>
+                <div id="button-register">Sign up</div>
+                <div id="button-back">Back</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

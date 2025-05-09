@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <script type="module" src="/script/login.js" defer></script> 
+    <script>
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.getElementById('header-container').innerHTML = data;
+                import('/script/header.js');
+            });   
+    </script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="background">
+        <div class="background-left">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 7.5vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 26.182vh; transform: scaleX(-1);">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 48.04vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 66.7vh; transform: scaleX(-1);">
+        </div>
+        <div class="background-right">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 7.5vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 26.182vh; transform: scaleX(-1);">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 48.04vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 66.7vh; transform: scaleX(-1);">
+        </div>
+    </div>
+    <div id="foreground">
+        <div class="login-box"> 
+            <div class="login-box-text">
+                <div>Welcome Back!</div>
+                <div style="margin-top: 9.28vh;">Login</div>
+            </div>
+            <div id="invalid-input-box"></div>
+            <div id="login-box-fields"></div>
+            <div id="login-box-buttons"></div>
+        </div>
+    </div>   
+</body>
+</html>

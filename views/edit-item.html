@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/add-item.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/script/edit-item.js" type="module" defer></script>
+    <script>
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.getElementById('header-container').innerHTML = data;
+                import('/script/header.js');
+            });
+    </script>
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="background">
+        <div class="background-left">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 7.5vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 26.182vh; transform: scaleX(-1);">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 48.04vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 3.4vw; 
+                top: 66.7vh; transform: scaleX(-1);">
+        </div>
+        <div class="background-right">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 7.5vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 26.182vh; transform: scaleX(-1);">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 48.04vh;">
+            <img class="pizza" src="/images/pizza.png" style="left: 29.9vw; 
+                top: 66.7vh; transform: scaleX(-1);">
+        </div>
+    </div>
+    <div id="foreground">
+        <div class="login-box" style = "height: 90vh;">
+            <div class="login-box-text" style="margin-top: 20px">Edit Item</div>
+            <img id="item-image">
+                <input type="file" id="item-image-upload" accept="image/*" 
+                    style="display: none;">
+                <img id="camera-icon" src="/images/camera-icon.png"></img>
+            </img>
+            <div class="fields-box">
+                <div id="invalid-name-box" class="invalid-input"></div>
+                <input id="item-name-field" class="field" placeholder="Name">
+                
+                <div id="invalid-category-box" class="invalid-input"></div>
+                <div id="item-category-box" class="dropdown-box">
+                    <div class="item-category-container">
+                        <span id="item-category-text"
+                            class="item-dropdown-text">Category</span>
+                        <img src="/images/dropdown-arrow.png" 
+                            id="category-dropdown-arrow" class="dropdown-arrow">
+                    </div>
+                    <div id="item-category-dropdown" class="item-dropdown-list">
+                        <div id="food-button" class="dropdown-button">Food</div>
+                        <div id="drink-button" class="dropdown-button">Drink</div>
+                    </div>
+                </div>
+
+                <div id="invalid-cuisine-box" class="invalid-input"></div>
+                <div id="item-cuisine-box" class="dropdown-box">
+                    <div class="item-category-container">
+                        <span id="item-cuisine-text" class="item-dropdown-text">
+                            Cuisine Type
+                        </span>
+                        <img src="/images/dropdown-arrow.png" 
+                            id="cuisine-dropdown-arrow" class="dropdown-arrow">
+                    </div>
+                    <div id="cuisine-type-dropdown" class="item-dropdown-list">
+                        <div id="fast-food-button" class="dropdown-button">Fast Food</div>
+                        <div id="desi-button" class="dropdown-button">Desi</div>
+                        <div id="chinese-button" class="dropdown-button">Chinese</div>
+                        <div id="bbq-button" class="dropdown-button">BBQ</div>
+                        <div id="dessert-button" class="dropdown-button">Dessert</div>
+                    </div>                    
+                </div>
+
+                <div id="invalid-size-box" class="invalid-input"></div>
+                <div id="item-size-box" class="dropdown-box">
+                    <div class="item-category-container">
+                        <span id="item-size-text"  class="item-dropdown-text">
+                            Sizes
+                        </span>
+                        <img src="/images/dropdown-arrow.png" 
+                            id="size-dropdown-arrow" class="dropdown-arrow">
+                    </div>
+                    <div id="size-type-dropdown" class="item-dropdown-list">
+                        <div id="size-one" class="dropdown-button">1</div>
+                        <div id="size-two" class="dropdown-button">2</div>
+                        <div id="size-three" class="dropdown-button">3</div>
+                        <div id="size-four" class="dropdown-button">4</div>
+                    </div>
+                </div>
+                <div id="invalid-size-field" class="invalid-input"></div>
+                <div id="invalid-price-field" class="invalid-input"></div>
+                <div id="sizes-container">
+                    <div class="size-price-container">
+                        <input class="field size-input" id="size1" placeholder="Size 1">
+                        <input class="field price-input" id="price1" placeholder="Price 1">
+                    </div>
+                    <div class="size-price-container">
+                        <input class="field size-input" id="size2" placeholder="Size 2">
+                        <input class="field price-input" id="price2"placeholder="Price 2">
+                    </div>
+                    <div class="size-price-container">
+                        <input class="field size-input" id="size3" placeholder="Size 3">
+                        <input class="field price-input" id="price3" placeholder="Price 3">
+                    </div>
+                    <div class="size-price-container">
+                        <input class="field size-input" id="size4" placeholder="Size 4">
+                        <input class="field price-input" id="price4" placeholder="Price 4">
+                    </div>
+                </div>
+            </div>
+            <div class="buttons-box">
+                <div id="edit-button" class="button">Edit</div>
+            </div>
+        </div>
+    </div>
+</body>

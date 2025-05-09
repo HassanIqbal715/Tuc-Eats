@@ -1,0 +1,131 @@
+body {
+    overflow: hidden;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+.background-left {
+    background-color: #FFBC5E;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+}
+
+.background-right {
+    background-color: white;
+    left: 50vw;
+    top: 0;
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+}
+
+.pizza {
+    position: absolute;
+    opacity: 0.33;
+    width: 240px;
+    height: 240px;
+    margin: 0;
+    padding: 0;
+}
+
+#foreground {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;    
+}
+
+.login-box {
+    border-radius: 25px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    background-color: #FFBC5E;
+    height: 75vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-box-text {
+    text-align: center;
+    margin-top: 6.641vh;
+    font-size: 3.516vh;
+    font-weight: 700;
+}
+
+#login-box-fields {
+    margin-top: 4vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fieldBox {
+    font-size: 2.343vh;
+    height: 4.6vh;
+    width: 15.8vw;
+    border: none;
+    background-color: white;
+    position: absolute;
+    z-index: 0;
+}
+
+.field {
+    position: relative;
+    margin: 0;
+    height: 4.6vh;
+    width: 15vw;
+    padding: 0;
+    border: none;
+    z-index: 1;
+}
+
+input:focus {
+    outline: none;
+}
+
+.forgotPassword {
+    align-self: flex-end;
+    font-size: 2.343vh;
+    margin-top: 0.8vh;
+    color: #646464;
+    text-decoration: underline;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vh;
+    height: 4.785vh;
+    width: 10vw;
+    border-radius: 25px;
+    background-color: #E28400;
+    color: white;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.forgotPassword:hover {
+    cursor: pointer;
+}
+
+.invalid-input {
+    color: red;
+    font-size: 1.5vh;
+}

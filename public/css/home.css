@@ -1,0 +1,114 @@
+.banner {
+    font-size: 48px;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    margin-top: 64px;
+    padding-right: 20px;
+    margin-left: -10px;
+    width: 100%;
+    background-color: #FFBC5E;
+    height: 300px;
+}
+
+.banner-text {
+    font-weight: 700;
+    width: 40vw;
+    display: block;
+    font-size: 48px;
+}
+
+.banner-image {
+    width: 250px;
+    height: auto;
+}
+
+.restaurant-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 320px);
+    justify-content: center;
+    gap: 20px;
+}
+
+.restaurant-item {
+    border-radius: 10px;
+    border: solid gray 1px;
+    width: 320px;
+    height: 280px;
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.restaurant-item:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0px 9px 10px rgba(0, 0, 0, 0.4);
+}
+
+.restaurant-item-image {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 320px;
+    height: 180px;
+    border-bottom: solid 1px gray;
+}
+
+.restaurant-item-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 70px;
+}
+
+.restaurant-item-text {
+    font-size: 24px;
+}
+
+@media (max-width: 1220px) {
+    .banner-text {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner {
+        margin-top: 193px;
+    }
+
+    .restaurant_grid {
+        grid-template-columns: repeat(auto-fill, 280px);
+    }
+
+    .restaurant-item {
+        width: 280px;
+        height: auto;
+    }
+    .restaurant-item-image {
+        width: 280px;
+        height: auto;
+    }
+}
+
+@media (max-width: 570px) {
+    .banner-text {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-image {
+        width: 30%;
+        height: auto;
+    }
+
+    .banner-text {
+        font-size: 5vw;
+    }
+}

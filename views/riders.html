@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riders</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/riders.css">
+    <script type="module" src="/script/riders.js" defer></script> 
+    <script>
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(async data => {
+                document.querySelector('#header-container').innerHTML = data;
+                import('/script/header.js');
+            });
+    </script>
+</head>
+<body>
+    <div id='header-container'></div>
+    <div id="riders-back-button">To Restaurant</div>
+    <div class="title-text">Riders</div>
+    <div id="riders-container"></div>
+</body>
+</html>
