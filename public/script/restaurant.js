@@ -14,6 +14,7 @@ const restaurantDescription = document.querySelector("#restaurant-description");
 const itemsGrid = document.querySelector("#items-grid");
 const itemsSearchBar = document.querySelector("#items-search-bar");
 const itemsSearchButton = document.querySelector("#items-search-button");
+const recommendMeButton = document.querySelector("#recommendation");
 
 const drinksButton = document.querySelector("#items-header-drinks");
 const foodButton = document.querySelector("#items-header-food");
@@ -26,6 +27,7 @@ const foodDetails = await utils.fetchFoodByRestaurantID(restaurantId);
 const drinkDetails = await utils.fetchDrinksByRestaurantID(restaurantId);
 
 // Admin panel
+const adminHeader = document.querySelector("#admin-header");
 const adminAddItemBtn = document.querySelector("#admin-addItem"); 
 const adminRemoveItemBtn = document.querySelector("#admin-removeItem");
 const adminEditItemBtn = document.querySelector("#admin-editItem");
@@ -67,6 +69,8 @@ let itemQuantity = 1;
 // Tells which section is currently displayed on the screen (food or drinks)
 let isFoodSection = false;
 
+utils.checkAuthenticationWithType(restaurantId, adminHeader, 'flex');
+
 async function userAuthentication() {
     if (await utils.checkUserAuthentication() == true) {
         itemCartButton.style.display = 'flex';
@@ -83,6 +87,7 @@ function createItem(id, name, price, imageLink) {
     const itemImage = document.createElement("img");
     itemImage.classList.add("item-image");
     itemImage.src = imageLink;
+    console.log(imageLink);
 
     const itemDescription = document.createElement("div");
     itemDescription.classList.add("item-descrption");
@@ -135,7 +140,7 @@ function createItemSizeButton(id, sizeName, price, flag) {
     btn.addEventListener("click", ()=> {
         let allButtons = document.querySelectorAll(".item-size-button");
         allButtons.forEach(button => {
-            button.style.backgroundColor = "white";
+            button.style.backgroundColor = "";
             button.style.color = "black";
         });
         btn.style.backgroundColor = "#E28400";
@@ -157,7 +162,9 @@ function createItemSizeButton(id, sizeName, price, flag) {
 
 async function showItemWindow(item_id) {
     let item = await utils.fetchItemsByRestaurantIDAndItemID(restaurantId, item_id);
+    let restaurantDetails = await utils.fetchRestaurantByID(restaurantId);
     let itemVariants = await utils.fetchItemVariantsByItemID(item_id);
+    document.querySelector("#item-restaurant-name").textContent = restaurantDetails[0].name;
     itemSelectBox.style.display = 'flex';
     itemSelectName.textContent = item[0].name;
     itemSelectImage.src = item[0].image_link;
@@ -171,17 +178,19 @@ async function showItemWindow(item_id) {
 function createFoodItems() {
     itemsGrid.innerHTML = '';
     for (let x of foodDetails) {
-        createItem(x.id, x.name, x.price, x.image_Link);
+        createItem(x.id, x.name, x.price, x.image_link);
     }
     console.log(foodDetails);
+    itemsSearchBar.placeholder = 'Search Food';
     isFoodSection = true;
 }
 
 function createDrinkItems() {
     itemsGrid.innerHTML = '';
     for (let x of drinkDetails) {
-        createItem(x.id, x.name, x.price, x.image_Link);
+        createItem(x.id, x.name, x.price, x.image_link);
     }
+    itemsSearchBar.placeholder = 'Search Drink';
     isFoodSection = false;
 }
 
@@ -302,6 +311,32 @@ function itemSearchClick() {
         searchDrinkItems(itemsSearchBar.value.trim());
 }
 
+async function recommendationClick() {
+    let items;
+    if (isFoodSection == true) {
+        items = await utils.fetchFoodByRestaurantID(restaurantId);
+    }
+    else {
+        items = await utils.fetchDrinksByRestaurantID(restaurantId);
+    }
+
+    let randNum = Math.floor(Math.random() * items.length);
+    const itemVar = await utils.fetchItemVariantsByItemID(
+        items[randNum].id
+    );
+    let varIndex = 0;
+    let min = itemVar[0].price;
+    for (let x = 0; x < itemVar.length; x++){
+        if (itemVar[x].price < min) {
+            min = itemVar[x].price;
+            varIndex = x;
+        }
+    }
+    itemsGrid.innerHTML = '';
+    createItem(items[randNum].id, items[randNum].name, 
+        itemVar[varIndex].price, items[randNum].image_link);
+}
+
 foodButton.addEventListener("click", createFoodItems);
 drinksButton.addEventListener("click", createDrinkItems);
 itemsSearchButton.addEventListener("click", itemSearchClick);
@@ -333,6 +368,10 @@ adminRidersBtn.addEventListener("click", () => {
 
 adminAddItemBtn.addEventListener("click", () => {
     window.location.href = '/restaurant/' + restaurantId + '/add-item/';
+});
+
+adminOrdersBtn.addEventListener("click", () => {
+    window.location.href = '/restaurant/' + restaurantId + '/orders/'
 });
 
 adminRemoveItemBtn.addEventListener("click", toggleRemoveItem);
@@ -404,5 +443,7 @@ itemBackButton.addEventListener("click", ()=> {
     backgroundBlur.style.display = 'none';
     document.body.style.overflow = '';
 });
+
+recommendMeButton.addEventListener("click", recommendationClick);
 
 userAuthentication();

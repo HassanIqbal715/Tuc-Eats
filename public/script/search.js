@@ -193,6 +193,8 @@ function createItemSizeButton(id, sizeName, price, flag) {
 async function showItemWindow(item_id) {
     let item = await utils.fetchItemsByItemID(item_id);
     let itemVariants = await utils.fetchItemVariantsByItemID(item_id);
+    let restaurantDetails = await utils.fetchRestaurantByID(item[0].restaurant_id);
+    document.querySelector("#item-restaurant-name").textContent = restaurantDetails[0].name;
     itemSelectBox.style.display = 'flex';
     itemSelectName.textContent = item[0].name;
     itemSelectImage.src = item[0].image_link;

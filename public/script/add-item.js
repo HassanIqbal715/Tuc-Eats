@@ -8,6 +8,8 @@ import {
     checkAuthentication,
 } from "./utils.js";
 
+import * as utils from "./utils.js";
+
 const itemName = document.querySelector("#item-name-field");
 const itemImage = document.querySelector("#item-image");
 
@@ -205,18 +207,13 @@ async function checkSubmit() {
         checkCategory() == true &
         checkCuisine() == true
     ) {
-        console.log(itemName.value);
-        console.log(itemCategory);
-        console.log(restaurantID);
-        console.log(itemCuisine);
-        console.log(itemSizes);
-        console.log(itemPrices);
+        const restaurantDetails = await utils.fetchRestaurantByID(restaurantID);
         if (itemCuisine === '') {
             const newDrink = {
                 name: itemName.value,
                 category: itemCategory,
                 restaurant_id: restaurantID,
-                image_link: '/images/items/' + itemName.value + '.jpg'
+                image_link: `/images/items/${restaurantDetails[0].name}/${itemName.value}.jpg`
             }
             await insertItem(newDrink);
         }
@@ -226,7 +223,7 @@ async function checkSubmit() {
                 category: itemCategory,
                 restaurant_id: restaurantID,
                 cuisine: itemCuisine,
-                image_link: '/images/items/' + itemName.value + '.jpg'                
+                image_link: `/images/items/${restaurantDetails[0].name}/${itemName.value}.jpg`             
             }
             await insertItem(newFood);
             await insertFood(newFood);

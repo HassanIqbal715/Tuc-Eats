@@ -1,7 +1,7 @@
 import { 
     fetchUserByEmail, 
     fetchAdminByEmail, 
-    fetchRestaurantByEmail, 
+    fetchRestaurantByEmail,
     checkUserAuthentication, 
     fetchCurrentUser,
     fetchCartItemsCountByUserID,
@@ -16,6 +16,7 @@ const userDropdown = document.querySelector("#user-dropdown");
 const adminDropdown = document.querySelector("#admin-dropdown");
 
 const userLogOutButton = document.querySelector("#user-logout-button");
+const userOrderButton = document.querySelector("#user-myOrders");
 const adminLogOutButton = document.querySelector("#admin-logout-button");
 
 const adminMyRestaurantButton = document.querySelector("#admin-myRestaurant");
@@ -179,6 +180,14 @@ searchBar.addEventListener("keydown", (event) => {
             window.location.href = `/search?name=${encodeURIComponent(searchTerm)}`;
         }
     }
+});
+
+userOrderButton.addEventListener("click", async () => {
+    if (!currentUser)
+        await getCurrentUser();
+    let userData = await fetchUserByEmail(currentUser.email);
+
+    window.location.href = `/user/${userData[0].id}/orders/`;
 });
 
 adminMyRestaurantButton.addEventListener("click", async ()=> {

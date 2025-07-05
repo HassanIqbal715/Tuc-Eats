@@ -18,7 +18,6 @@ function createRestaurantItem(name, imageLink) {
     restaurantItem.id = ++restaurantCounter;
 
     restaurantItem.addEventListener("click", () => {
-        console.log(restaurantItem.id);
         clickRestaurant(restaurantItem.id);
     });
 
@@ -32,8 +31,8 @@ function clickRestaurant(id) {
     window.location.href = `/restaurant/${id}`;
 }
 
-createRestaurantItem('Ayan Gardens', '/images/ayan-gardens.jpg');
-createRestaurantItem('Hot\'N\'Spicy', '/images/ayan-gardens.jpg');
-createRestaurantItem('Raju Campus Hotel', '/images/ayan-gardens.jpg');
-createRestaurantItem('Asrar Bucks', '/images/ayan-gardens.jpg');
-createRestaurantItem('Abid Hortons', '/images/ayan-gardens.jpg');
+createRestaurantItem('Ayan Gardens', '/images/ayan_gardens.jpg');
+createRestaurantItem('Hot\'N\'Spicy', '/images/hot_n_spicy.jpg');
+createRestaurantItem('Raju Campus Hotel', '/images/campus_hotel.jpg');
+createRestaurantItem('Asrar Bucks', '/images/asrar_bucks.jpg');
+createRestaurantItem('Abid Hortons', '/images/abid_hortons.jpg');

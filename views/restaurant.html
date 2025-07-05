@@ -19,7 +19,6 @@
             .then(res => res.text())
             .then(async data => {
                 document.getElementById('item-select-container').innerHTML = data;
-                await import('/script/item.js');
             });
     </script>
 </head>

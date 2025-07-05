@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const puppeteer = require('puppeteer');
 const app = express();
 const {
     connectClient,
@@ -75,41 +76,43 @@ app.get('/api/current-user', (req, res) => {
 // Restaurant
 
 // Function placed up here to resolve a conflict.
-app.get('/api/restaurant/items', (req, res) => {
+app.get('/api/restaurant/items', async (req, res) => {
     const { search } = req.query;
-    if (search) {
-        const query = `
-            SELECT V.ID, name, item_type, restaurant_id, V.item_ID, min_price, image_link
-            FROM item_variants as V, (
-	        SELECT item_ID, MIN(price) as min_price 
-	        FROM item_variants 
-	        GROUP BY item_ID
-            ) as R, Item
-            WHERE Item.ID = V.item_ID AND V.price = R.min_price AND V.item_ID = R.item_ID AND name ILIKE $1;
-        `;
 
-        getDataByValueArray(query, [`%${search}%`], (err, data) => {
-            if (err) 
-                return res.status(500).json({ message: 'Failed to get items' });
-            res.json({ data });
-        });
-    }
-    else {
-        const query = `
-            SELECT V.ID, name, item_type, restaurant_id, V.item_id, min_price, image_link
-            FROM item_variants as V, (
-	        SELECT item_ID, MIN(price) as min_price 
-	        FROM item_variants 
-	        GROUP BY item_ID
-            ) as R, Item
-            WHERE Item.ID = V.item_ID AND V.price = R.min_price AND V.item_ID = R.item_ID;
-        `;
+    let query;
+    let data;
 
-        getData(query, (err, data) => {
-            if (err) 
-                return res.status(500).json({ message: 'Failed to get items' });
-            res.json({ data });
-        });
+    try {
+        if (search) {
+            query = `
+                SELECT V.ID, name, item_type, restaurant_id, V.item_ID, min_price, image_link
+                FROM item_variants as V, (
+                    SELECT item_ID, MIN(price) as min_price 
+                    FROM item_variants 
+                    GROUP BY item_ID
+                ) as R, Item
+                WHERE Item.ID = V.item_ID AND V.price = R.min_price AND V.item_ID = R.item_ID 
+                    AND name ILIKE $1;
+            `;
+            data = await getDataByValue(query, [`%${search}%`]);
+        } else {
+            query = `
+                SELECT V.ID, name, item_type, restaurant_id, V.item_id, min_price, image_link
+                FROM item_variants as V, (
+                    SELECT item_ID, MIN(price) as min_price 
+                    FROM item_variants 
+                    GROUP BY item_ID
+                ) as R, Item
+                WHERE Item.ID = V.item_ID AND V.price = R.min_price AND V.item_ID = R.item_ID;
+            `;
+            data = await getData(query);
+        }
+
+        res.json({ data });
+
+    } catch (err) {
+        console.error('❌ Query failed:', err.message);
+        res.status(500).json({ message: 'Failed to get items' });
     }
 });
 
@@ -663,6 +666,20 @@ app.get('/api/user/:id/cart/item-count', (req,res) => {
     });
 });
 
+app.get('/api/user/:id/orders', (req,res) => {
+    const query = `
+        SELECT *
+        FROM item_order
+        WHERE customer_id = $1;
+    `
+    getDataByValue(query, req.params.id, (err, data) => {
+        if (err) {
+            return res.status(500).json({ message: 'Failed to get orders' });
+        }
+        res.json({ data });
+    });
+});
+
 app.post('/api/user/cart/insert', (req, res) => {
     const query = `INSERT INTO Cart (ID, USER_ID) VALUES ($1, $1)`;
     const values = req.body;
@@ -761,6 +778,11 @@ app.get('/item.html', (req, res) => {
 app.get('/user/:id/cart', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'cart.html'));
 });
+
+app.get('/user/:id/orders/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'orders.html'));
+});
+
 // Start server
 const PORT = 5000;
 app.listen(PORT, () => {

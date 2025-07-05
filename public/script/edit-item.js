@@ -16,6 +16,8 @@ import {
     fetchFoodByRestaurantID
 } from "./utils.js";
 
+import * as utils from "./utils.js";
+
 const itemName = document.querySelector("#item-name-field");
 const itemPrice = document.querySelector("#item-price-field");
 const itemImage = document.querySelector("#item-image");
@@ -234,13 +236,13 @@ async function checkSubmit() {
         checkCuisine() == true &
         checkSize() == true
     ) {
-        console.log(itemCuisine);
+        const restaurantDetails = await utils.fetchRestaurantByID(restaurantID);        
         if (itemCuisine === '') {
             const newDrink = {
                 id: itemID,
                 name: itemName.value,
                 category: itemCategory,
-                image_link: '/images/items/' + itemName.value + '.jpg'
+                image_link: `/images/items/${restaurantDetails[0].name}/${itemName.value}.jpg`
             }
             await updateItem(newDrink);
         }
@@ -250,7 +252,7 @@ async function checkSubmit() {
                 name: itemName.value,
                 category: itemCategory,
                 cuisine: itemCuisine,
-                image_link: '/images/items/' + itemName.value + '.jpg'                
+                image_link: `/images/items/${restaurantDetails[0].name}/${itemName.value}.jpg`          
             }
             await updateItem(newFood);
             let food = await fetchFoodByRestaurantID(restaurantID);
@@ -441,7 +443,7 @@ sizeFour.addEventListener("click", () => {
 
 editButton.addEventListener("click", async () => {
     if (await checkSubmit() == true) {
-        // window.location.reload();
+        window.location.href = '/restaurant/' + restaurantID;
     }
 });
 

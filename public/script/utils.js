@@ -263,6 +263,18 @@ export async function fetchOrdersByRestaurantID(id) {
     }        
 }
 
+export async function fetchOrdersByUserID(id) {
+    try {
+        const response = await fetch(`/api/user/${id}/orders`);
+        const data = await response.json();
+        return data.data;
+    }
+    catch (error) {
+        console.error('Error fetching user orders:', error);
+        return null;
+    }        
+}
+
 export async function fetchOrderItemsByOrderID(id) {
     try {
         const response = await fetch(`/api/restaurant/order/${id}/items`);
@@ -492,6 +504,19 @@ export async function checkAuthentication(restaurantID, body) {
             let admin = await fetchAdminByEmail(currentAdmin.email);
             if (admin[0].id == restaurantID) {
                 body.style.display = 'block';
+            }
+        }
+    }
+    return;
+}
+
+export async function checkAuthenticationWithType(restaurantID, body, type) {
+    let currentAdmin = await getCurrentUser();
+    if (currentAdmin) {
+        if (currentAdmin.role === 'admin') {
+            let admin = await fetchAdminByEmail(currentAdmin.email);
+            if (admin[0].id == restaurantID) {
+                body.style.display = type;
             }
         }
     }

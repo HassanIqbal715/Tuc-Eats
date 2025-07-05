@@ -40,7 +40,6 @@ let passwordFieldBox = document.createElement("div");
 
 let emailField = document.createElement("input");
 let passwordField = document.createElement("input");
-let forgotPasswordButton = document.createElement("p");
 let loginButton = document.createElement("div");
 let registerButton = document.createElement("div");
 
@@ -59,15 +58,13 @@ emailField.addEventListener("keydown", (event)=> {
 passwordField.placeholder = " Password";
 passwordField.classList.add("field");
 passwordField.style.marginTop = "4.644vh";
+passwordField.style.marginBottom = "4vh";
 passwordField.type = "password";
 passwordField.addEventListener("keydown", (event)=> {    
     if (event.key === "Enter") {
         loginClick();
     }
 });
-
-forgotPasswordButton.classList.add("forgotPassword");
-forgotPasswordButton.textContent = "Forgot password?";
 
 loginButton.classList.add("button");
 loginButton.textContent = "Login";
@@ -82,7 +79,6 @@ loginFields.appendChild(emailFieldBox);
 loginFields.appendChild(passwordFieldBox);
 loginFields.appendChild(emailField);
 loginFields.appendChild(passwordField);
-loginFields.appendChild(forgotPasswordButton);
 
 buttons.appendChild(loginButton);
 buttons.appendChild(registerButton);
