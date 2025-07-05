@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-const puppeteer = require('puppeteer');
+const fs = require('fs');
+
 const app = express();
 const {
     connectClient,
@@ -76,43 +77,51 @@ app.get('/api/current-user', (req, res) => {
 // Restaurant
 
 // Function placed up here to resolve a conflict.
-app.get('/api/restaurant/items', async (req, res) => {
+app.get('/api/restaurant/items', (req, res) => {
     const { search } = req.query;
 
     let query;
-    let data;
 
-    try {
-        if (search) {
-            query = `
-                SELECT V.ID, name, item_type, restaurant_id, V.item_ID, min_price, image_link
-                FROM item_variants as V, (
-                    SELECT item_ID, MIN(price) as min_price 
-                    FROM item_variants 
-                    GROUP BY item_ID
-                ) as R, Item
-                WHERE Item.ID = V.item_ID AND V.price = R.min_price AND V.item_ID = R.item_ID 
-                    AND name ILIKE $1;
-            `;
-            data = await getDataByValue(query, [`%${search}%`]);
-        } else {
-            query = `
-                SELECT V.ID, name, item_type, restaurant_id, V.item_id, min_price, image_link
-                FROM item_variants as V, (
-                    SELECT item_ID, MIN(price) as min_price 
-                    FROM item_variants 
-                    GROUP BY item_ID
-                ) as R, Item
-                WHERE Item.ID = V.item_ID AND V.price = R.min_price AND V.item_ID = R.item_ID;
-            `;
-            data = await getData(query);
-        }
+    if (search) {
+        query = `
+            SELECT V.ID, name, item_type, restaurant_id, V.item_ID, min_price, image_link
+            FROM item_variants as V, (
+                SELECT item_ID, MIN(price) as min_price 
+                FROM item_variants 
+                GROUP BY item_ID
+            ) as R, Item
+            WHERE Item.ID = V.item_ID AND V.price = R.min_price AND V.item_ID = R.item_ID 
+                AND name ILIKE $1;
+        `;
 
-        res.json({ data });
+        getDataByValue(query, `%${search}%`, (err, data) => {
+            if (err) {
+                console.error('❌ Query failed:', err.message);
+                res.status(500).json({ message: 'Failed to get items' });
+            } else {
+                res.json({ data });
+            }
+        });
 
-    } catch (err) {
-        console.error('❌ Query failed:', err.message);
-        res.status(500).json({ message: 'Failed to get items' });
+    } else {
+        query = `
+            SELECT V.ID, name, item_type, restaurant_id, V.item_id, min_price, image_link
+            FROM item_variants as V, (
+                SELECT item_ID, MIN(price) as min_price 
+                FROM item_variants 
+                GROUP BY item_ID
+            ) as R, Item
+            WHERE Item.ID = V.item_ID AND V.price = R.min_price AND V.item_ID = R.item_ID;
+        `;
+
+        getData(query, (err, data) => {
+            if (err) {
+                console.error('❌ Query failed:', err.message);
+                res.status(500).json({ message: 'Failed to get items' });
+            } else {
+                res.json({ data });
+            }
+        });
     }
 });
 
